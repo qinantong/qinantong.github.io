@@ -1,0 +1,184 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>静态博客图片处理最佳实践 | LittlePacai</title><meta name="author" content="LittlePacai"><meta name="copyright" content="LittlePacai"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="静态博客图片处理最佳实践背景用github&#x2F;gitee + Hexo搭建个人博客的时候发现，有一些从其他地方拷贝的内容，本地图片显示正常，但是一部署到github就发现图片没了。 这里点名表扬csdn，直接禁止外链访问图片，哈哈真有你的。所以在csdn看到好的内容想转载，单纯的cv已经没用了，也许本地是可以看到的，但是一旦部署，就会出现下面的情况：  解决方案关于博客的图片如何优雅的处理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="静态博客图片处理最佳实践">
+<meta property="og:url" content="http://qinantong.github.io/2024/03/26/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/index.html">
+<meta property="og:site_name" content="LittlePacai">
+<meta property="og:description" content="静态博客图片处理最佳实践背景用github&#x2F;gitee + Hexo搭建个人博客的时候发现，有一些从其他地方拷贝的内容，本地图片显示正常，但是一部署到github就发现图片没了。 这里点名表扬csdn，直接禁止外链访问图片，哈哈真有你的。所以在csdn看到好的内容想转载，单纯的cv已经没用了，也许本地是可以看到的，但是一旦部署，就会出现下面的情况：  解决方案关于博客的图片如何优雅的处理">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://qinantong.github.io/img/avatar.jpg">
+<meta property="article:published_time" content="2024-03-26T12:17:00.000Z">
+<meta property="article:modified_time" content="2024-03-26T13:10:53.442Z">
+<meta property="article:author" content="LittlePacai">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://qinantong.github.io/img/avatar.jpg"><link rel="shortcut icon" href="/img/avatar.jpg"><link rel="canonical" href="http://qinantong.github.io/2024/03/26/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '静态博客图片处理最佳实践',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-26 21:10:53'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.1.1"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">2</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/banner.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="LittlePacai"><span class="site-name">LittlePacai</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">静态博客图片处理最佳实践</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-03-26T12:17:00.000Z" title="Created 2024-03-26 20:17:00">2024-03-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2024-03-26T13:10:53.442Z" title="Updated 2024-03-26 21:10:53">2024-03-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/blog%E6%90%AD%E5%BB%BA/">blog搭建</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="静态博客图片处理最佳实践"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="静态博客图片处理最佳实践"><a href="#静态博客图片处理最佳实践" class="headerlink" title="静态博客图片处理最佳实践"></a>静态博客图片处理最佳实践</h2><h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>用github&#x2F;gitee + Hexo搭建个人博客的时候发现，有一些从其他地方拷贝的内容，本地图片显示正常，但是一部署到github就发现图片没了。</p>
+<p>这里点名<strong>表扬</strong>csdn，直接禁止外链访问图片，哈哈真有你的。所以在csdn看到好的内容想转载，单纯的cv已经没用了，也许本地是可以看到的，但是一旦部署，就会出现下面的情况：</p>
+<p><img src="/../images/image-20240326202726810.png" alt="image-20240326202726810"></p>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>关于博客的图片如何优雅的处理的问题，其实网络上早就有很多讨论。大致的解决方案有以下几种：</p>
+<ol>
+<li>自己搭建图床</li>
+<li>将所有图片作为静态资源一起保存并部署到博客。</li>
+</ol>
+<p>对于<strong>第一种</strong>又大致有两种不同的方案：</p>
+<ol>
+<li>购买云服务中的oss云存储服务搭建图床，优点是稳定、快速。缺点一个字，要钱。虽然现在云存储的价格已经很低了，几十块钱就能买一年10多G的空间，但是免费才是最香的。</li>
+<li>用GitHub（<del>Gitee</del>）搭建图床，github作为全球最大的<del>同性交友中心</del>代码托管网站不是没有道理的，相比gitee就是大度，gitee在发现用户建立仓库存储图片并且使用它的公网带宽免费搭建图床以后，直接修复了这个bug，所以现在只有GitHub（或者类似的代码托管网站）可以用来搭建图床。优点是免费。缺点是限制带宽1M，慢。</li>
+</ol>
+<p>由于国内GitHub的状况，搭建图床访问速度并不理想。加上我们必然是使用免费的方案，这里我选择将所有图片作为静态资源一起保存并部署到博客。</p>
+<p>接下来介绍我在实践中找到的比较方便、优雅的解决方案。</p>
+<h4 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h4><p>首先需要安装Typora，最简洁的markdown编辑器。</p>
+<p>其次在博客（我这里是D盘的hexoblog目录）的source目录下建立images目录用于存储图片。</p>
+<p><img src="/../images/image-20240326204831218.png" alt="image-20240326204831218"></p>
+<p>然后打开typora，打开文件目录下的偏好设置。</p>
+<p><img src="/../images/image-20240326205108996.png" alt="image-20240326205108996"></p>
+<p>将插入图片时的路径改为你上面建立的 sources&#x2F;images 文件夹，<em>这样一旦你在Typora中粘贴了图片，Typora就会自动帮你保存到 sources&#x2F;images 文件夹中</em>。勾选对于本地图片和网络图片生效。勾选<strong>优先使用相对路径</strong>，这很重要，因为你的博客部署到github上以后绝对路径会发生变化，必须使用相对路径。</p>
+<p><img src="/../images/image-20240326205214405.png" alt="image-20240326205214405"></p>
+<p>接下来，就是尽兴的写文时刻啦，无论时本地截图 ctrl+v 到Typora，还是拷贝网络上的内容，图片都会被下载到sources&#x2F;images文件夹，从而提供给sources&#x2F;_posts目录下的文章使用。由于使用的是相对路径，并且images文件夹下的内容也会被push到仓库，所以部署以后图片正常显示！这里推一手<a href="https://qinantong.github.io/">我的博客</a>，欢迎大家访问呢。</p>
+<p><img src="/../images/image-20240326210149166.png" alt="image-20240326210149166"></p>
+<p>ps：还有一个小技巧，因为我不习惯每次写文章打开cmd，然后</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new &quot;新文章名&quot;</span><br></pre></td></tr></table></figure>
+
+<p>所以推建大家在鼠标右键新建中加入新建md文件的选项。这样我们只要在sources&#x2F;_posts目录下新建一个md文件直接开始写就行啦！具体操作见[这里](<a href="https://qinantong.github.io/2024/03/26/windows%E5%8F%B3%E9%94%AE%E6%96%B0%E5%BB%BAmd%E6%96%87%E4%BB%B6/">Windows下右键新建.md文件教程 | LittlePacai (qinantong.github.io)</a>)。</p>
+<h4 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h4><p>搭建个人博客不是一个很难的操作，也有不止一种的解决方案。真正难的是持续总结所学并更新博客。希望各位持之以恒，坚持才是王道。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/qinantong">LittlePacai</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://qinantong.github.io/2024/03/26/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">http://qinantong.github.io/2024/03/26/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/avatar.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2024/03/26/windows%E5%8F%B3%E9%94%AE%E6%96%B0%E5%BB%BAmd%E6%96%87%E4%BB%B6/" title="Windows下右键新建.md文件教程"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next</div><div class="next_info">Windows下右键新建.md文件教程</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">LittlePacai</div><div class="author-info__description">不说话 装高手</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/qinantong"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="toc-number">1.</span> <span class="toc-text">静态博客图片处理最佳实践</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.0.1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">1.0.2.</span> <span class="toc-text">解决方案</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E6%93%8D%E4%BD%9C"><span class="toc-number">1.0.3.</span> <span class="toc-text">具体操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-number">1.0.4.</span> <span class="toc-text">结语</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/26/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" title="静态博客图片处理最佳实践">静态博客图片处理最佳实践</a><time datetime="2024-03-26T12:17:00.000Z" title="Created 2024-03-26 20:17:00">2024-03-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/26/windows%E5%8F%B3%E9%94%AE%E6%96%B0%E5%BB%BAmd%E6%96%87%E4%BB%B6/" title="Windows下右键新建.md文件教程">Windows下右键新建.md文件教程</a><time datetime="2024-03-26T04:58:00.000Z" title="Created 2024-03-26 12:58:00">2024-03-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/22/markdown%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="markdown语法学习笔记">markdown语法学习笔记</a><time datetime="2024-03-21T16:00:00.000Z" title="Created 2024-03-22 00:00:00">2024-03-22</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/19/centos7%E5%AE%89%E8%A3%85Docker%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4%EF%BC%88%E6%97%A0%E5%9D%91%E7%89%88%E6%95%99%E7%A8%8B%EF%BC%89/" title="centos7安装Docker全过程记录">centos7安装Docker全过程记录</a><time datetime="2024-03-19T08:10:00.000Z" title="Created 2024-03-19 16:10:00">2024-03-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/17/Hexo-gitee%EF%BC%9A30%E5%88%86%E9%92%9F%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99/" title="Hexo+gitee：30分钟搭建一个自己的个人博客网站">Hexo+gitee：30分钟搭建一个自己的个人博客网站</a><time datetime="2024-03-17T10:27:06.000Z" title="Created 2024-03-17 18:27:06">2024-03-17</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By LittlePacai</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
